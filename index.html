@@ -10,8 +10,29 @@
         #rightSide { left: 500px;
             border-left: 1px solid black }
       </style>
+      <script>
+      var numberOfFaces = 5;
+        function generateFaces(){
+          for (var i = 0; i < numberOfFaces; i++) {
+            createElement();
+          }
+        }
+        function createElement(){
+          a = Math.random()*400;
+          a = Math.floor(a);
+          b = Math.random()*400;
+          b = Math.floor(b);
+          var theLeftSide = document.getElementById("leftSide");
+          var node = document.createElement("img");
+          node.setAttribute('src', "http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png");
+          node.setAttribute('id', "img");
+          node.style.top = a + 'px';
+          node.style.left = b + 'px';
+          theLeftSide.appendChild(node);
+                  }
+      </script>
     </head>
-    <body>
+    <body onload="generateFaces()">
       <h1>Matching Game</h1>
       <p>Click on the extra smiley on the left to proceed to the next level.<br>The game ends if a wrong smiley is selected!!</p>
       <div id="leftSide"></div>
