@@ -8,14 +8,18 @@
             width:500px;
             height:500px}
         #rightSide { left: 500px;
-            border-left: 1px solid black }
+            border-left: 3px solid black }
       </style>
       <script>
-      var numberOfFaces = 5;
+        var numberOfFaces = 4;
         function generateFaces(){
-          for (var i = 0; i < numberOfFaces; i++) {
+          for (var i = 0; i <= numberOfFaces; i++) {
             createElement();
           }
+          var theRightSide = document.getElementById("rightSide");
+          leftSideImages = document.getElementById("leftSide").cloneNode(true);
+          leftSideImages.removeChild(leftSideImages.childNodes[numberOfFaces]);
+          theRightSide.appendChild(leftSideImages);
         }
         function createElement(){
           a = Math.random()*400;
