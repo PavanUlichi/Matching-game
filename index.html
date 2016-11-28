@@ -8,7 +8,10 @@
             width:500px;
             height:500px}
         #rightSide { left: 500px;
-            border-left: 3px solid black }
+            border-left: 1px solid black }
+        body{
+          background-color: lightblue;
+        }
       </style>
       <script>
         var numberOfFaces = 4;
@@ -20,6 +23,24 @@
           leftSideImages = document.getElementById("leftSide").cloneNode(true);
           leftSideImages.removeChild(leftSideImages.childNodes[numberOfFaces]);
           theRightSide.appendChild(leftSideImages);
+          document.getElementById("leftSide").lastChild.onclick = function nextLevel(event){
+                                          event.stopPropagation();
+                                          var theLeftSide = document.getElementById("leftSide");
+                                          while (theLeftSide.hasChildNodes()) {
+                                          theLeftSide.removeChild(theLeftSide.firstChild);
+                                          }
+                                          while (theRightSide.hasChildNodes()) {
+                                          theRightSide.removeChild(theRightSide.firstChild);
+                                          }
+                                          numberOfFaces += 5;
+                                          generateFaces();
+                                        }
+        var theBody = document.getElementsByTagName("body")[0];
+        theBody.onclick = function gameOver() {
+          alert("Game Over!");
+          theBody.onclick = null;
+          theLeftSide.lastChild.onclick = null;
+        }
         }
         function createElement(){
           a = Math.random()*400;
@@ -37,7 +58,7 @@
       </script>
     </head>
     <body onload="generateFaces()">
-      <h1>Matching Game</h1>
+      <h1 style="text-align: cente">Matching Game</h1>
       <p>Click on the extra smiley on the left to proceed to the next level.<br>The game ends if a wrong smiley is selected!!</p>
       <div id="leftSide"></div>
       <div id="rightSide"></div>
